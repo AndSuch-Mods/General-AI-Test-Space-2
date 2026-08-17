@@ -58,14 +58,15 @@
       box-shadow: var(--shadow);
     }
     .meta { padding: 16px; margin-bottom: 16px; }
-    .meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .meta-grid { display: grid; grid-template-columns: minmax(0, 250px) minmax(0, 1fr); gap: 12px; align-items: start; }
+    .field { min-width: 0; }
     .field label { display:block; color: var(--muted); font-size: .82rem; margin-bottom: 6px; font-weight: 700; }
     .field input, .field textarea, .answer {
-      width: 100%; color: var(--text); background: #0e1a15; border: 1px solid #30483c; border-radius: 11px; padding: 11px 12px; outline: none;
+      width: 100%; max-width: 100%; min-width: 0; color: var(--text); background: #0e1a15; border: 1px solid #30483c; border-radius: 11px; padding: 11px 12px; outline: none;
     }
+    .field input[type="date"] { display:block; min-width:0; overflow:hidden; }
     .field input:focus, .field textarea:focus, .answer:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(82,212,135,.10); }
     .field textarea { min-height: 74px; resize: vertical; }
-    .field.full { grid-column: 1 / -1; }
 
     .toolbar { position: sticky; top: 8px; z-index: 20; padding: 12px; margin-bottom: 16px; backdrop-filter: blur(14px); background: rgba(21,35,29,.94); }
     .progress-row { display:flex; align-items:center; gap:10px; margin-bottom: 11px; }
@@ -123,8 +124,7 @@
     @media (max-width: 760px) {
       .shell { width:min(100% - 18px, 1040px); padding-top:10px; }
       header { padding:18px; border-radius:18px; }
-      .meta-grid { grid-template-columns:1fr; }
-      .field.full { grid-column:auto; }
+      .meta-grid { grid-template-columns:minmax(0,1fr); }
       .toolbar { top:5px; }
       .toolbar-spacer { display:none; }
       .q-top { grid-template-columns:auto 1fr; }
@@ -146,10 +146,8 @@
 
     <section class="meta">
       <div class="meta-grid">
-        <div class="field"><label for="date">Walkthrough date</label><input id="date" type="date" data-meta="date"></div>
-        <div class="field"><label for="contact">US Pipe contact</label><input id="contact" type="text" placeholder="Name" data-meta="contact"></div>
-        <div class="field"><label for="attendees">Attendees</label><input id="attendees" type="text" placeholder="CSI / Sky / US Pipe" data-meta="attendees"></div>
-        <div class="field full"><label for="generalNotes">General notes</label><textarea id="generalNotes" placeholder="Anything that does not fit a specific question…" data-meta="generalNotes"></textarea></div>
+        <div class="field"><label for="date">Walkthrough date</label><input id="date" type="date" value="2026-08-17" data-meta="date"></div>
+        <div class="field"><label for="generalNotes">General notes</label><textarea id="generalNotes" placeholder="Anything that does not fit a specific question…" data-meta="generalNotes"></textarea></div>
       </div>
     </section>
 
@@ -189,7 +187,7 @@
     </section>
 
     <div class="empty" id="emptyState">No questions match this filter.</div>
-    <footer>US Pipe Bessemer Pipe Plant · Air Compressor Cooling Tower · Quote Walkdown Notes</footer>
+    <footer>US Pipe Bessemer Plant · Air Compressor Cooling Tower · Quote Walkdown Notes</footer>
   </main>
   <div class="toast" id="toast">Saved</div>
 
@@ -311,11 +309,14 @@
     let activeFilter = 'all';
 
     function defaultState() {
-      return { meta: {}, answers: {}, skipped: {}, photos: {}, custom: [] };
+      return { meta: { date: '2026-08-17' }, answers: {}, skipped: {}, photos: {}, custom: [] };
     }
 
     function loadState() {
-      try { return { ...defaultState(), ...JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') }; }
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        return { ...defaultState(), ...saved, meta: { date: '2026-08-17', ...(saved.meta || {}) } };
+      }
       catch { return defaultState(); }
     }
 
@@ -475,7 +476,7 @@
       const text = buildSummary();
       const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
       const a = document.createElement('a');
-      const date = state.meta.date || new Date().toISOString().slice(0,10);
+      const date = state.meta.date || '2026-08-17';
       a.href = URL.createObjectURL(blob);
       a.download = `US-Pipe-Cooling-Tower-Walkdown-${date}.md`;
       document.body.appendChild(a); a.click(); a.remove();
@@ -495,9 +496,7 @@
       const lines = [];
       lines.push('# US Pipe — Air Compressor Cooling Tower Walkdown');
       lines.push('');
-      lines.push(`- **Date:** ${state.meta.date || ''}`);
-      lines.push(`- **US Pipe contact:** ${state.meta.contact || ''}`);
-      lines.push(`- **Attendees:** ${state.meta.attendees || ''}`);
+      lines.push(`- **Date:** ${state.meta.date || '2026-08-17'}`);
       if (state.meta.generalNotes) lines.push(`- **General notes:** ${state.meta.generalNotes.trim()}`);
       lines.push('');
 
@@ -542,7 +541,7 @@
     }
 
     function escapeHtml(value) {
-      return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+      return String(value).replace(/[&<>'\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[c]));
     }
 
     render();
