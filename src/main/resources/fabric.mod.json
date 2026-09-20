@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "pagesofatlas",
+  "version": "${version}",
+  "name": "Pages of Atlas (Unofficial 1.21.1 Backport)",
+  "description": "Experimental multi-page texture atlas backport. GPU validation pending.",
+  "authors": ["mattmcbeardface (upstream)", "AndSuch-Mods (unofficial backport)"],
+  "license": "MIT",
+  "environment": "client",
+  "contact": {"sources": "https://github.com/AndSuch-Mods/General-AI-Test-Space-2", "homepage": "https://github.com/mattmcbeardface/pages-of-atlas"},
+  "entrypoints": {"client": ["com.pagesofatlas.PagesOfAtlasClient"]},
+  "mixins": ["pagesofatlas.client.mixins.json"],
+  "depends": {
+    "minecraft": "1.21.1",
+    "java": ">=21",
+    "fabricloader": ">=0.16.14",
+    "fabric-api": "0.116.17+1.21.1",
+    "sodium": "0.6.13+mc1.21.1",
+    "iris": "1.8.8+mc1.21.1"
+  },
+  "suggests": {"continuity": "3.0.0+1.21"}
+}

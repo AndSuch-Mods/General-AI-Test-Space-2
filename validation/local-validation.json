@@ -1,0 +1,36 @@
+{
+  "jar": "pages-of-atlas-0.3.15-backport.1+1.21.1.jar",
+  "sha256": "7269e1137885b5d2b18fdf9f4c28a65c9469c60d5ef42e6f6af4f310d8e11115",
+  "version": "0.3.15-backport.1+1.21.1",
+  "java_class_major": 65,
+  "classes": 31,
+  "required_mixins": 14,
+  "checks": "zip, metadata, MIT license, class version, resource/refmap presence, named-reference scan",
+  "runtime_rendering_tested": false,
+  "test_suites": [
+    {
+      "name": "com.pagesofatlas.GlslTest",
+      "tests": "1",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.pagesofatlas.MixinTargetTest",
+      "tests": "1",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.pagesofatlas.PagingTest",
+      "tests": "7",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    }
+  ],
+  "mixin_target_methods": 22,
+  "synthetic_generator_test": "1 passed",
+  "glsl_compiler": "Khronos glslang 16.6.0; vertex and fragment fixtures compiled, no graphics context"
+}

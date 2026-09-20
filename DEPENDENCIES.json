@@ -1,0 +1,65 @@
+{
+  "minecraft": "1.21.1",
+  "mappings": "official Mojang client/server 1.21.1 via Loom",
+  "gradle": "8.12",
+  "loom": "1.10.5",
+  "fabric_loader": "0.16.14",
+  "fabric_api": "0.116.17+1.21.1",
+  "profile_selection": "provisional; active profile not supplied",
+  "sources": {
+    "upstream": "d4db5c0fc619474018cf2eca4cfd4889a7ae973f",
+    "sodium": "8672650501117e72f5a809867092378fb5bc908a",
+    "iris": "25d756f9c773879fb50e59626e5dd7f5bba1348f"
+  },
+  "artifacts": [
+    {
+      "project": "sodium",
+      "modrinth_version": "u1OEbNKx",
+      "version": "mc1.21.1-0.6.13-fabric",
+      "minecraft_versions": [
+        "1.21",
+        "1.21.1"
+      ],
+      "url": "https://cdn.modrinth.com/data/AANobbMI/versions/u1OEbNKx/sodium-fabric-0.6.13%2Bmc1.21.1.jar",
+      "sha512": "13032e064c554fc8671573dadb07bc70e6ea2f68706c65c086c4feb1d2f664346a3414cbf9d1367b42b8d063a35e40f2f967ef9af31642e1f0093b852161fe91",
+      "sha256": "e04599514d88e41765f710eeba59e3814909833396bc11b977f48fc2e7e50353",
+      "fabric_version": "0.6.13+mc1.21.1"
+    },
+    {
+      "project": "iris",
+      "modrinth_version": "zsoi0dso",
+      "version": "1.8.8+1.21.1-fabric",
+      "minecraft_versions": [
+        "1.21",
+        "1.21.1"
+      ],
+      "url": "https://cdn.modrinth.com/data/YL57xq9U/versions/zsoi0dso/iris-fabric-1.8.8%2Bmc1.21.1.jar",
+      "sha512": "2e6ba2ffa1e1a6799288245a7e0ac68ee8df1d41b98362189df58f535cae34fa9277801e4136633467341b7dae5be0e5c698011b480b3d91b66d3dd4f7567aa6",
+      "sha256": "b5ad39a6cb113ca0a1765f06689f9f4b29ccd0c81247de90b06c42f5da1092f5",
+      "fabric_version": "1.8.8+mc1.21.1"
+    },
+    {
+      "project": "continuity",
+      "modrinth_version": "kSPJ4hQv",
+      "version": "3.0.0+1.21",
+      "minecraft_versions": [
+        "1.21",
+        "1.21.1"
+      ],
+      "url": "https://cdn.modrinth.com/data/1IjD5062/versions/kSPJ4hQv/continuity-3.0.0%2B1.21.jar",
+      "sha512": "3601ddb50f19142c087d32525bc0afcfb5f49a2e7477b6645a98ec191218739fdf3c6ac95cd298e826eb34fc533af43bb0e78c64e51292866ecabade4d14b13a",
+      "sha256": "99fd46b834874d167ea2349a9a72947cbfa7192f927aa99bbeb4b0637aa208d4",
+      "fabric_version": "3.0.0+1.21"
+    },
+    {
+      "project": "fabric-api",
+      "modrinth_version": "Mys3P7lK",
+      "version": "0.116.17+1.21.1",
+      "minecraft_versions": [
+        "1.21.1"
+      ],
+      "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/Mys3P7lK/fabric-api-0.116.17%2B1.21.1.jar",
+      "sha512": "98c478217da19181f0e4df3ea6c2da6bdbda271c7544a4aea048513a49b444f1ff5b71dc0df6303017c48e8ff69b7bb6af6179bdf0d0e09ab3c1ee08411857a8"
+    }
+  ]
+}

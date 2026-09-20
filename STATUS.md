@@ -1,0 +1,16 @@
+# Checkpoint
+
+Experimental implementation built locally. In-game validation is pending; this is not a verified Patrix rendering release.
+
+- Destination cloned safely and empty tree confirmed. Branch: codex/pages-of-atlas-1.21.1, preserving existing main history.
+- MIT packer imported from upstream d4db5c0; target integrations rewritten for 1.21.1/OpenGL. A virtual 2x2 coordinate space preserves unique sprite UVs while physical pages stay within the texture size limit. Diffuse/PBR allocation and uploads share a PageLayout, including mip and animation upload offsets.
+- Pinned provisional profile stack: Sodium 0.6.13, Iris 1.8.8, Continuity 3.0.0, Fabric API 0.116.17, Loader 0.16.14, Minecraft 1.21.1, Java 21, Loom 1.10.5, Gradle 8.12. Published artifact metadata inspected. The user's active profile was unavailable and was not changed. No Indium added (Sodium 0.6 implements FRAPI).
+- Remapped production JAR builds. Nine JUnit tests pass, including 22 required target-method/shadow bytecode checks and Khronos glslang 16.6.0 compilation of representative rewritten GLSL. The standalone synthetic generator test passes. Package audit passes (Java 21 class version 65, exact target/dependencies, license, refmap and mixin resources). `validation/local-validation.json` records the exact JAR hash and results.
+- Generated synthetic pack: `build/test-packs/poa-synthetic-1.21.1.zip`; all 12 sprites are referenced by existing block models. Normal/height and specular maps match diffuse dimensions, including animated prismarine. No paid inputs.
+- Build logs are local under `.reference/build-1.log` through `.reference/build-7.log`; the final sanitized log is committed as `validation/local-build.txt`. Initial fixes: stable public Blaze3D methods require remap=false (checks remain required); the official 8.12 wrapper JAR requires matching 8.12 launcher scripts instead of upstream's 9.5.1 scripts. No required integration was stubbed or injection requirement relaxed to compile.
+- Pending remote delivery: commit/push this source, open draft PR, and verify the narrowly scoped Actions build and downloadable artifact. The workflow is implemented with read-only repository permission and SHA-pinned actions/compiler.
+- No Minecraft, launcher, server, visual tests, or active profile modifications performed. No paid assets copied into this repository.
+
+Resume in this repository using Java 21: `./gradlew build --console=plain`. On this Windows host the portable JDK is in `.reference/java`; command-specific `JAVA_TOOL_OPTIONS=-Djavax.net.ssl.trustStoreType=Windows-ROOT` uses Windows' trusted certificates without disabling TLS verification. For the optional GLSL tests set `GLSLANG_VALIDATOR` to `.reference/glslang/bin/glslang.exe` (absolute path). No game launch is part of this command.
+
+Next runtime checkpoint: follow USER_TESTS.md on the pinned provisional stack. Shader adapters may still be needed for indirect sampler parameters or unsupported texture operations. Up to four pages; texture sampler limits can still be exhausted. GPU behavior, POM, CTM, item/particle/painting rendering, resource lifetime under actual reloads and both Patrix resolutions await user testing. DH/Physics/Dynamic Trees are not verified. Bytecode target checks are not full Mixin application. Compiler fixtures are not shader-pack or GPU validation.
