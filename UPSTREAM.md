@@ -3,7 +3,7 @@
 Unofficial Minecraft Java 1.21.1 Fabric backport of [Pages of Atlas](https://github.com/mattmcbeardface/pages-of-atlas).
 
 - Frozen source: `d4db5c0fc619474018cf2eca4cfd4889a7ae973f` (tag `v0.3.15`).
-- Upstream targets Minecraft 26.2/Java 25. Its packing algorithm is reused; version-specific integrations are being rewritten against 1.21.1.
+- Upstream targets Minecraft 26.2/Java 25. Its packing algorithm is reused; version-specific integrations were rewritten against 1.21.1.
 - Additional cherry-picked commits: none.
 - Upstream MIT license and copyright are retained verbatim in LICENSE.
 - Destination branch starts at its existing main commit `ba3dfc54d1b00e264f4f9059cfca331f25cee31f`; the tree was empty when cloned.

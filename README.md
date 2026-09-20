@@ -1,4 +1,4 @@
-# Pages of Atlas — unofficial Fabric 1.21.1 backport
+# Pages of Atlas â€” unofficial Fabric 1.21.1 backport
 
 Experimental source backport of [Pages of Atlas](https://github.com/mattmcbeardface/pages-of-atlas), with a remapped client JAR. **Compiles and passes offline checks; in-game compatibility is unverified.** This is not an upstream release. Minecraft **1.21.1 exactly**, not 1.21.11.
 
@@ -18,6 +18,8 @@ The supplied profile/mod list was unavailable. This is a **provisional pinned st
 Sodium 0.6 supplies Fabric Renderer API support; Indium is not included. Iris's inspected artifact requires Sodium 0.6.x, so the newer 0.8.x Sodium builds advertised for 1.21.1 were **not** selected. The exact Sodium/Iris builds are enforced by mod metadata. Continuity is needed for CTM packs but not for atlas paging itself. `DEPENDENCIES.json` records artifact URLs, published version IDs and hashes; Gradle verifies dependency checksums. [UPSTREAM.md](UPSTREAM.md) records attribution and frozen source references.
 
 ## Build and install
+
+[Download the experimental build bundle](https://github.com/AndSuch-Mods/General-AI-Test-Space-2/actions/runs/35493903757/artifacts/10599602992) from the [successful CI run](https://github.com/AndSuch-Mods/General-AI-Test-Space-2/actions/runs/35493903757) (GitHub sign-in may be required; 30-day retention). Install only `libs/pages-of-atlas-0.3.15-backport.1+1.21.1.jar` from the bundle. Its SHA-256 is `0ad3aad74a9c1bf9dd529702d43cd1f748b9ff86d9135e60bfb44ea43cb34683`, identical on Windows and Linux. The bundle also contains sources, checksums, reports and the synthetic test pack.
 
 With JDK 21, run `./gradlew build` (Windows: `gradlew.bat build`). Then run `python tools/validate_artifact.py`. The production artifact is `build/libs/pages-of-atlas-0.3.15-backport.1+1.21.1.jar`; the `-sources.jar` is not installable. The adjacent `.jar.sha256` contains its SHA-256. The wrapper distribution and wrapper JAR are pinned and checksum verified. No Minecraft launch is needed to build.
 
