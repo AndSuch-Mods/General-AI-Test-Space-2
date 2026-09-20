@@ -15,10 +15,10 @@ Fabric Loom: 1.10.5
 @Mixin(targets = "net.caffeinemc.mods.sodium.client.render.chunk.shader.DefaultShaderInterface", remap = false)
 ^
 Note: <workspace>\src\client\java\com\pagesofatlas\mixin\SodiumShaderMixin.java uses or overrides a deprecated API.
-
 Note: Recompile with -Xlint:deprecation for details.
 2 warnings
-> Task :processClientResources UP-TO-DATE
+
+> Task :processClientResources
 > Task :jar
 > Task :clientClasses
 > Task :compileTestJava UP-TO-DATE
@@ -32,12 +32,12 @@ Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStoreType=Windows-ROOT
 
 > Task :validateAccessWidener NO-SOURCE
 > Task :check
-> Task :remapJar
 > Task :remapSourcesJar
+> Task :remapJar
 > Task :assemble
 > Task :build
 
 [Incubating] Problems report is available at: file:///C:/Users/micha/Desktop/Patrix-Backport/pages-of-atlas-1.21.1/build/reports/problems/problems-report.html
 
-BUILD SUCCESSFUL in 3s
-11 actionable tasks: 6 executed, 5 up-to-date
+BUILD SUCCESSFUL in 2s
+11 actionable tasks: 7 executed, 4 up-to-date

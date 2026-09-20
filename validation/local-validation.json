@@ -1,10 +1,10 @@
 {
   "jar": "pages-of-atlas-0.3.15-backport.1+1.21.1.jar",
-  "sha256": "7269e1137885b5d2b18fdf9f4c28a65c9469c60d5ef42e6f6af4f310d8e11115",
+  "sha256": "cbbf7317c8737c6c1ff43099cd60918d9953b6f42f31e77b2be8f249f6387e7b",
   "version": "0.3.15-backport.1+1.21.1",
   "java_class_major": 65,
-  "classes": 31,
-  "required_mixins": 14,
+  "classes": 33,
+  "required_mixins": 16,
   "checks": "zip, metadata, MIT license, class version, resource/refmap presence, named-reference scan",
   "runtime_rendering_tested": false,
   "test_suites": [
@@ -30,7 +30,7 @@
       "errors": "0"
     }
   ],
-  "mixin_target_methods": 22,
+  "mixin_target_methods": 24,
   "synthetic_generator_test": "1 passed",
   "glsl_compiler": "Khronos glslang 16.6.0; vertex and fragment fixtures compiled, no graphics context"
 }

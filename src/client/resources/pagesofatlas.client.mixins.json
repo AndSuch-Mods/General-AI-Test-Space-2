@@ -6,7 +6,8 @@
   "client": [
     "SpriteLoaderMixin", "TextureAtlasMixin", "TextureUtilMixin", "GlStateManagerMixin",
     "RendererShaderSourceMixin", "ShaderInstanceMixin", "SodiumShaderMixin",
-    "IrisShaderMixin", "IrisExtendedShaderMixin", "IrisSamplersMixin", "IrisPbrAtlasMixin", "IrisFillMixin", "IrisTransformMixin", "IrisTextureSizeMixin"
+    "IrisShaderMixin", "IrisExtendedShaderMixin", "IrisSamplersMixin", "IrisPbrAtlasMixin", "IrisFillMixin", "IrisTransformMixin", "IrisTextureSizeMixin",
+    "IrisFallbackSourceMixin", "IrisFallbackShaderMixin"
   ],
   "injectors": {"defaultRequire": 1}
 }
