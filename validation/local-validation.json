@@ -1,6 +1,6 @@
 {
   "jar": "pages-of-atlas-0.3.15-backport.3+1.21.1.jar",
-  "sha256": "de75f15190faa617bba0401e15ef212e3600f053c122e72040b01e6ff3379d72",
+  "sha256": "e0ccc95b4e7c5290df6284c8b0b989898393229427a7e60126772d6afca813da",
   "version": "0.3.15-backport.3+1.21.1",
   "java_class_major": 65,
   "classes": 44,
@@ -19,7 +19,8 @@
   "synthetic_generator_tests": 1,
   "known_test_failures_resolved": [
     "Old string assertions adjusted for AST printer formatting and local-name protection.",
-    "Missing new parser dependency checksums detected in clean build; added official Maven Central SHA-256 values without weakening verification."
+    "Missing new parser dependency checksums detected in clean build; added official Maven Central SHA-256 values without weakening verification.",
+    "Initial Windows/Linux JAR comparison differed only in mixin JSON line endings; normalized the local working resource to the existing Git LF policy; production JARs now identical."
   ],
   "not_performed": [
     "Runtime Mixin application",
@@ -28,5 +29,7 @@
     "Minecraft visual tests",
     "FPS/VRAM benchmarks",
     "Full modpack compatibility"
-  ]
+  ],
+  "tested_source_commit": "a348a96cc5aee9d797739de9c3d13045ac8c1c86",
+  "windows_linux_identical": true
 }

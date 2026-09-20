@@ -1,4 +1,21 @@
 {
   "version": "0.3.15-backport.3+1.21.1",
-  "status": "pending new branch CI; prior evidence preserved under validation/backport2"
+  "tested_commit": "a348a96cc5aee9d797739de9c3d13045ac8c1c86",
+  "ci_run": 35526877697,
+  "artifact_id": 10609772015,
+  "artifact_url": "https://github.com/AndSuch-Mods/General-AI-Test-Space-2/actions/runs/35526877697/artifacts/10609772015",
+  "conclusion": "success",
+  "downloaded_and_inspected": true,
+  "jar_sha256": "e0ccc95b4e7c5290df6284c8b0b989898393229427a7e60126772d6afca813da",
+  "artifact_zip_sha256": "075c7b44ab584f9b5979706fb7b375a6dc796e3a090d82621c25f345028e196f",
+  "windows_linux_identical": true,
+  "junit": {
+    "tests": 25,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "static_mixin_targets": 34,
+  "required_mixins": 19,
+  "runtime_rendering_tested": false
 }

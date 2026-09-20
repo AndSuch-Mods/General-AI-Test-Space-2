@@ -2,7 +2,7 @@
 
 Experimental **0.3.15-backport.3+1.21.1**, targeting Minecraft **1.21.1 exactly**, Java 21. Compilation and offline checks pass; actual Mixin application, GPU rendering, and full-pack compatibility remain unverified. MIT attribution to [mattmcbeardface](https://github.com/mattmcbeardface/pages-of-atlas) is preserved.
 
-The new production JAR is `pages-of-atlas-0.3.15-backport.3+1.21.1.jar`. SHA-256: `de75f15190faa617bba0401e15ef212e3600f053c122e72040b01e6ff3379d72`. Download status and the tested source checkpoint are recorded in [STATUS.md](STATUS.md). The previous backport.2 build remains available from [its successful CI run](https://github.com/AndSuch-Mods/General-AI-Test-Space-2/actions/runs/35496578548/artifacts/10601041163) and source checkpoint `6e32a27c19e7a856af33326a9b104cf25ced03b2`.
+The new production JAR is `pages-of-atlas-0.3.15-backport.3+1.21.1.jar`. SHA-256: `e0ccc95b4e7c5290df6284c8b0b989898393229427a7e60126772d6afca813da`. [Download the verified build bundle](https://github.com/AndSuch-Mods/General-AI-Test-Space-2/actions/runs/35526877697/artifacts/10609772015) (30-day retention; GitHub sign-in may be required). Install only the production JAR from `libs/`. Windows and Linux production JARs match byte-for-byte. CI and the tested source checkpoint are recorded in [STATUS.md](STATUS.md). The previous backport.2 build remains available from [its successful CI run](https://github.com/AndSuch-Mods/General-AI-Test-Space-2/actions/runs/35496578548/artifacts/10601041163) and source checkpoint `6e32a27c19e7a856af33326a9b104cf25ced03b2`.
 
 ## Required runtime stack
 
