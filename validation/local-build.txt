@@ -6,38 +6,22 @@ Fabric Loom: 1.10.5
 > Task :compileJava UP-TO-DATE
 > Task :processResources UP-TO-DATE
 > Task :classes UP-TO-DATE
-
-> Task :compileClientJava
-<workspace>\src\client\java\com\pagesofatlas\mixin\IrisShaderMixin.java:7: warning: Mixin target net.irisshaders.iris.pipeline.programs.SodiumShader is public and should be specified in value
-@Mixin(targets = "net.irisshaders.iris.pipeline.programs.SodiumShader", remap = false)
-^
-<workspace>\src\client\java\com\pagesofatlas\mixin\SodiumShaderMixin.java:10: warning: Mixin target net.caffeinemc.mods.sodium.client.render.chunk.shader.DefaultShaderInterface is public and should be specified in value
-@Mixin(targets = "net.caffeinemc.mods.sodium.client.render.chunk.shader.DefaultShaderInterface", remap = false)
-^
-Note: <workspace>\src\client\java\com\pagesofatlas\mixin\SodiumShaderMixin.java uses or overrides a deprecated API.
-Note: Recompile with -Xlint:deprecation for details.
-2 warnings
-
-> Task :processClientResources
+> Task :compileClientJava UP-TO-DATE
+> Task :processClientResources UP-TO-DATE
 > Task :jar
-> Task :clientClasses
+> Task :clientClasses UP-TO-DATE
 > Task :compileTestJava UP-TO-DATE
 > Task :processIncludeJars UP-TO-DATE
 > Task :sourcesJar
 > Task :processTestResources NO-SOURCE
 > Task :testClasses UP-TO-DATE
-
-Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStoreType=Windows-ROOT
-> Task :test
-
+> Task :test UP-TO-DATE
 > Task :validateAccessWidener NO-SOURCE
-> Task :check
-> Task :remapSourcesJar
+> Task :check UP-TO-DATE
 > Task :remapJar
+> Task :remapSourcesJar
 > Task :assemble
 > Task :build
 
-[Incubating] Problems report is available at: file:///C:/Users/micha/Desktop/Patrix-Backport/pages-of-atlas-1.21.1/build/reports/problems/problems-report.html
-
 BUILD SUCCESSFUL in 2s
-11 actionable tasks: 7 executed, 4 up-to-date
+11 actionable tasks: 4 executed, 7 up-to-date
