@@ -22,7 +22,7 @@ jobs:
           import base64, gzip, hashlib
           from pathlib import Path
           data = gzip.decompress(base64.b64decode(Path('.github/verification-bootstrap.b64').read_text()))
-          assert hashlib.sha256(data).hexdigest() == '999996794014a1814e9c25a98354b5b2bddc3f40a5fd7a78c00c292a20ce5b16'
+          assert hashlib.sha256(data).hexdigest() == '6f23532c9201ea31347bac911986b2ae60851713c15db07c4506ad91c31b660b'
           Path('gradle/verification-metadata.xml').write_bytes(data)
           PY
           git config user.name 'github-actions[bot]'
