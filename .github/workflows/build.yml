@@ -4,7 +4,7 @@ on:
     branches: ['codex/pages-of-atlas-1.21.1']
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: poa-${{ github.ref }}
   cancel-in-progress: true
@@ -14,23 +14,6 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      # One-time transport workaround. Removed after publishing this exact checksum file.
-      - name: Publish verified checksum inventory
-        if: hashFiles('.github/verification-bootstrap.b64') != ''
-        run: |
-          python3 - <<'PY'
-          import base64, gzip, hashlib
-          from pathlib import Path
-          data = gzip.decompress(base64.b64decode(Path('.github/verification-bootstrap.b64').read_text()))
-          assert hashlib.sha256(data).hexdigest() == '6f23532c9201ea31347bac911986b2ae60851713c15db07c4506ad91c31b660b'
-          Path('gradle/verification-metadata.xml').write_bytes(data)
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add gradle/verification-metadata.xml
-          git rm .github/verification-bootstrap.b64
-          git commit -m 'Record exact verified dependency inventory'
-          git push origin "HEAD:${GITHUB_REF_NAME}"
       - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
         with:
           distribution: temurin

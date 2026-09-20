@@ -1,6 +1,8 @@
-# Pages of Atlas — unofficial Fabric 1.21.1 backport
+# Pages of Atlas â€” unofficial Fabric 1.21.1 backport
 
 Experimental **0.3.15-backport.2+1.21.1**, targeting Minecraft **1.21.1 exactly**, Java 21. Compilation and offline checks pass; actual Mixin application, GPU rendering, and full-pack compatibility remain unverified. MIT attribution to [mattmcbeardface](https://github.com/mattmcbeardface/pages-of-atlas) is preserved.
+
+[Download backport.2 build bundle](https://github.com/AndSuch-Mods/General-AI-Test-Space-2/actions/runs/35496578548/artifacts/10601041163) from [successful CI](https://github.com/AndSuch-Mods/General-AI-Test-Space-2/actions/runs/35496578548) (30-day retention; GitHub sign-in may be required). Install `libs/pages-of-atlas-0.3.15-backport.2+1.21.1.jar` only. SHA-256: `57c6802d072f2bd513c91922f0d48c2056ee80dfff14f9feb64737d2e8252c99`. Windows and Linux builds match byte-for-byte.
 
 ## Required runtime stack
 
