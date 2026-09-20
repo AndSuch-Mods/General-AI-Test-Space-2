@@ -21,7 +21,9 @@ def png(size, index, material, frames):
             if material == 'n':
                 rgba = (128 + checker * 40, 128, 255, 40 + (y % size) * 215 // size)
             elif material == 's':
-                rgba = (40 + checker * 200, 230 if index % 2 else 0, 0, 0)
+                # LabPBR _s: smoothness, F0/metal, SSS, emission; preserve all channels.
+                rgba = (40 + checker * 200, 230 if index % 2 else 0,
+                        160 if index % 3 == 0 else 0, 180 if index % 4 == 0 and checker else 0)
             else:
                 rgba = ((index * 47 + 50 + checker * 60) % 256,
                         (index * 89 + 80 + (y // size) * 90) % 256,
@@ -57,7 +59,7 @@ def generate(destination, size):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, default=Path('build/test-packs/poa-synthetic-1.21.1.zip'))
+    parser.add_argument('--output', type=Path, default=Path('build/test-packs/poa-synthetic-1.21.1-backport2.zip'))
     parser.add_argument('--size', type=int, default=1024)
     args = parser.parse_args()
     generate(args.output, args.size)

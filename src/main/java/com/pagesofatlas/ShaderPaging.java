@@ -6,7 +6,7 @@ import java.util.regex.*;
 /** Routes atlas sampling after includes/preprocessing, without modifying pack files. */
 public final class ShaderPaging {
     public static final List<String> SAMPLERS = List.of("Sampler0", "u_BlockTex", "gtexture", "tex", "texture", "normals", "specular");
-    private static final Set<String> SUPPORTED = Set.of("texture", "texture2D", "textureLod", "texture2DLod", "textureGrad", "textureSize", "texelFetch", "textureQueryLod");
+    private static final Set<String> SUPPORTED = Set.of("texture", "texture2D", "textureLod", "texture2DLod", "textureGrad", "textureSize", "texelFetch", "textureQueryLod", "texture2DGradARB", "texture2DGrad", "texture2DLodARB");
     private ShaderPaging() {}
     public static String prefix(String sampler) { return "poa_" + sampler; }
     public static String patch(String input) { return patch(input, true, SAMPLERS); }
@@ -14,6 +14,14 @@ public final class ShaderPaging {
         if (input.contains("// POA_PAGED_SAMPLING")) return input;
         // Includes and macros have already been expanded by the originating renderer.
         String source = input.replaceAll("(?s)/\\*.*?\\*/", " ").replaceAll("(?m)//[^\\r\\n]*", "");
+        Matcher uniforms = Pattern.compile("\\buniform\\s+[^;{}]*\\bsampler2D\\s+([^;{}]+);").matcher(source);
+        while (uniforms.find()) for (String sampler : samplers) {
+            if (Pattern.compile("\\b" + sampler + "\\b").matcher(uniforms.group(1)).find()
+                    && !uniforms.group().matches("uniform\\s+sampler2D\\s+" + sampler + "\\s*;")) {
+                throw new IllegalArgumentException("Pages of Atlas: unsupported atlas sampler declaration: " + uniforms.group());
+            }
+        }
+        source = SamplerSpecializer.specialize(source, samplers);
         boolean changed = false;
         for (String sampler : samplers) {
             Pattern declaration = Pattern.compile("\\buniform\\s+sampler2D\\s+" + sampler + "\\s*;");
@@ -61,8 +69,8 @@ public final class ShaderPaging {
         String result = query ? "vec2" : "vec4";
         String signature = fetch ? "ivec2 uv, int lod" : "vec2 uv";
         String suffix = "";
-        if (function.equals("textureLod") || function.equals("texture2DLod")) { signature += ", float lod"; suffix = ", lod"; }
-        if (function.equals("textureGrad")) { signature += ", vec2 dx, vec2 dy"; suffix = ", dx * vec2(" + p + "_grid), dy * vec2(" + p + "_grid)"; }
+        if (function.equals("textureLod") || function.equals("texture2DLod") || function.equals("texture2DLodARB")) { signature += ", float lod"; suffix = ", lod"; }
+        if (function.equals("textureGrad") || function.equals("texture2DGradARB") || function.equals("texture2DGrad")) { signature += ", vec2 dx, vec2 dy"; suffix = ", dx * vec2(" + p + "_grid), dy * vec2(" + p + "_grid)"; }
         if (fetch) suffix = ", lod";
         appendOverload(b, sampler, p, function, result, signature, suffix, fetch, fragment);
         // Fragment texture() and legacy texture2D() support the optional LOD bias.
@@ -74,7 +82,11 @@ public final class ShaderPaging {
         b.append(result).append(' ').append(p).append('_').append(fn).append('(').append(signature).append(") {\n");
         if (fetch) b.append("ivec2 size = textureSize(").append(sampler).append(", lod); ivec2 tile = clamp(uv / size, ivec2(0), ").append(p).append("_grid - 1); ivec2 local = uv - tile * size;\n");
         else b.append("ivec2 tile = ").append(p).append("_tile(uv); vec2 local = uv * vec2(").append(p).append("_grid) - vec2(tile);\n");
-        String nativeFunction = fn;
+        String nativeFunction = switch (fn) {
+            case "texture2DGradARB", "texture2DGrad" -> "textureGrad";
+            case "texture2DLodARB", "texture2DLod" -> "textureLod";
+            default -> fn;
+        };
         if (fragment && (fn.equals("texture") || fn.equals("texture2D"))) {
             String scale = suffix.isEmpty() ? "" : " * exp2(bias)";
             b.append("vec2 gx = dFdx(uv) * vec2(").append(p).append("_grid)").append(scale).append("; vec2 gy = dFdy(uv) * vec2(").append(p).append("_grid)").append(scale).append(";\n");

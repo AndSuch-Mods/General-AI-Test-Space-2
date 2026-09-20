@@ -46,5 +46,7 @@ sourceSets.test.compileClasspath += sourceSets.client.output + sourceSets.client
 sourceSets.test.runtimeClasspath += sourceSets.client.output + sourceSets.client.compileClasspath
 test {
     useJUnitPlatform()
+    inputs.files('validation/dependency-manifests.json', 'SHADERS.json')
+    if (file('build/shader-inputs').exists()) inputs.dir('build/shader-inputs')
     if (System.getenv('GLSLANG_VALIDATOR')) systemProperty 'poa.glslang', System.getenv('GLSLANG_VALIDATOR')
 }

@@ -70,8 +70,27 @@ class PagingTest {
     @Test void unsupportedSamplerOperationsFailExplicitly() {
         assertThrows(IllegalArgumentException.class, () -> ShaderPaging.patch("uniform sampler2D gtexture; void main(){vec4 x=textureGather(gtexture,vec2(0));}"));
         assertThrows(IllegalArgumentException.class, () -> ShaderPaging.patch("uniform sampler2D gtexture;void main(){vec4 x=texture(gtexture,vec2(0));foo(gtexture);}"));
-        assertThrows(IllegalArgumentException.class, () -> ShaderPaging.patch("uniform sampler2D normals; vec4 sampleMaterial(sampler2D s, vec2 uv){return texture(s,uv);} void main(){vec4 x=sampleMaterial(normals,vec2(0));}"));
+        assertTrue(ShaderPaging.patch("uniform sampler2D normals; vec4 sampleMaterial(sampler2D s, vec2 uv){return texture(s,uv);} void main(){vec4 x=sampleMaterial(normals,vec2(0));}").contains("poa_normals_texture(uv)"));
         assertThrows(IllegalArgumentException.class, () -> ShaderPaging.patch("uniform sampler2D normals; void main(){foo(normals);}"));
+        assertThrows(IllegalArgumentException.class, () -> ShaderPaging.patch("uniform sampler2D normals[2]; void main(){vec4 x=texture(normals[0],vec2(0));}"));
         assertEquals("void main(){}", ShaderPaging.patch("void main(){}"));
+    }
+    @Test void specializeNestedHelpersWithoutChangingNonAtlasOrOceanSamplers() {
+        String source = "uniform sampler2D gtexture; uniform sampler2D normals; uniform sampler2D physics_waviness; "
+                + "vec4 read(sampler2D tex,vec2 uv){return textureGrad(tex,uv,vec2(.01),vec2(.02));} "
+                + "vec4 material(vec2 uv,sampler2D s){return read(s,uv);}"
+                + "void main(){vec4 a=material(vec2(.5),gtexture)+material(vec2(.5),normals)+material(vec2(.5),physics_waviness);}";
+        String result = ShaderPaging.patch(source);
+        assertTrue(result.contains("poa_gtexture_textureGrad"));
+        assertTrue(result.contains("poa_normals_textureGrad"));
+        assertTrue(result.contains("material(vec2(.5),physics_waviness)"));
+        assertFalse(result.contains("poa_physics_waviness"));
+    }
+    @Test void genericTexParameterDoesNotAliasGlobalTexSampler() {
+        String source = "uniform sampler2D tex; uniform sampler2D noisetex; vec4 read(sampler2D tex,vec2 uv){return texture(tex,uv);} void main(){vec4 x=read(tex,vec2(0))+read(noisetex,vec2(0));}";
+        String result = ShaderPaging.patch(source);
+        assertTrue(result.contains("texture(poa_argument_"));
+        assertTrue(result.contains("poa_tex_texture"));
+        assertTrue(result.contains("read(noisetex,vec2(0))"));
     }
 }

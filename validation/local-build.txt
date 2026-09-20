@@ -1,7 +1,7 @@
 Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStoreType=Windows-ROOT
 
 > Configure project :
-Fabric Loom: 1.10.5
+Fabric Loom: 1.16.3
 
 > Task :compileJava
 > Task :processResources UP-TO-DATE
@@ -9,22 +9,22 @@ Fabric Loom: 1.10.5
 > Task :compileClientJava UP-TO-DATE
 > Task :processClientResources UP-TO-DATE
 > Task :jar
-> Task :clientClasses UP-TO-DATE
-> Task :compileTestJava
 > Task :processIncludeJars UP-TO-DATE
 > Task :sourcesJar
+> Task :clientClasses UP-TO-DATE
+> Task :remapJar
+> Task :compileTestJava
 > Task :processTestResources NO-SOURCE
 > Task :testClasses
+> Task :remapSourcesJar
 
 > Task :test
 Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStoreType=Windows-ROOT
 
+> Task :assemble
 > Task :validateAccessWidener NO-SOURCE
 > Task :check
-> Task :remapSourcesJar
-> Task :remapJar
-> Task :assemble
 > Task :build
 
-BUILD SUCCESSFUL in 4s
+BUILD SUCCESSFUL in 3s
 11 actionable tasks: 7 executed, 4 up-to-date

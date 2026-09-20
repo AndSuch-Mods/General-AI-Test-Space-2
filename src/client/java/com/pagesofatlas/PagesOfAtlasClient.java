@@ -13,13 +13,13 @@ public final class PagesOfAtlasClient implements ClientModInitializer {
             LOGGER.info("Dependency {}: {}", id, FabricLoader.getInstance().getModContainer(id)
                     .map(m -> m.getMetadata().getVersion().getFriendlyString()).orElse("absent"));
         }
-        for (String id : new String[]{"distanthorizons", "physicsmod", "dynamictrees"}) {
+        for (String id : new String[]{"distanthorizons", "physicsmod", "dynamictrees", "entity_model_features", "entity_texture_features", "immediatelyfast", "modernfix"}) {
             if (FabricLoader.getInstance().isModLoaded(id)) LOGGER.warn("{} is installed; its custom rendering paths have not been validated with paged atlases", id);
         }
     }
     public static int pageLimit(int hardware) {
         int size = Integer.getInteger("pagesofatlas.devPageSize", 0);
-        // Sodium 0.6 has 15 fractional UV bits: the virtual extent must not exceed 32768.
+        // Sodium 0.8.12 has 15 fractional UV bits: the virtual extent must not exceed 32768.
         if (size == 0) return Math.min(16384, Integer.highestOneBit(hardware));
         if (!Boolean.getBoolean("pagesofatlas.development")) {
             throw new IllegalStateException("devPageSize requires -Dpagesofatlas.development=true");

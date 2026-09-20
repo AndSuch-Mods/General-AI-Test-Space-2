@@ -13,10 +13,10 @@
   "depends": {
     "minecraft": "1.21.1",
     "java": ">=21",
-    "fabricloader": ">=0.16.14",
+    "fabricloader": ">=0.18.4",
     "fabric-api": "0.116.17+1.21.1",
-    "sodium": "0.6.13+mc1.21.1",
-    "iris": "1.8.8+mc1.21.1"
+    "sodium": "0.8.12+mc1.21.1",
+    "iris": "1.8.14-beta.1+mc1.21.1"
   },
   "suggests": {"continuity": "3.0.0+1.21"}
 }

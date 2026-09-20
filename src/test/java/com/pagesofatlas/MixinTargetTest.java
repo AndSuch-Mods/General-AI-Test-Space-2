@@ -13,7 +13,7 @@ class MixinTargetTest {
     private ClassNode read(String name) throws IOException {
         try (var input = getClass().getClassLoader().getResourceAsStream(name.replace('.', '/') + ".class")) {
             assertNotNull(input, name);
-            ClassNode node = new ClassNode(); new ClassReader(input).accept(node, ClassReader.SKIP_CODE); return node;
+            ClassNode node = new ClassNode(); new ClassReader(input).accept(node, 0); return node;
         }
     }
     private List<AnnotationNode> annotations(List<AnnotationNode> a, List<AnnotationNode> b) {
@@ -24,6 +24,14 @@ class MixinTargetTest {
         return null;
     }
     @Test void allRequiredMixinTargetsAndShadowsExistInPinnedArtifacts() throws Exception {
+        Map<String,String> versions = new HashMap<>();
+        var resources = getClass().getClassLoader().getResources("fabric.mod.json");
+        while (resources.hasMoreElements()) try (var stream = resources.nextElement().openStream()) {
+            var metadata = JsonParser.parseReader(new InputStreamReader(stream)).getAsJsonObject();
+            versions.put(metadata.get("id").getAsString(),metadata.get("version").getAsString());
+        }
+        assertEquals("0.8.12+mc1.21.1", versions.get("sodium"));
+        assertEquals("1.8.14-beta.1+mc1.21.1", versions.get("iris"));
         try (var reader = new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/pagesofatlas.client.mixins.json")))) {
             var config = JsonParser.parseReader(reader).getAsJsonObject();
             assertTrue(config.get("required").getAsBoolean());
@@ -60,5 +68,19 @@ class MixinTargetTest {
             assertTrue(checked >= 20, "Expected complete hook inventory");
             System.out.println("Verified " + checked + " required target methods plus shadow descriptors. Mixin application itself remains a runtime check.");
         }
+    }
+    @Test void pinnedUvPrecisionAndTextureSizeSupplierMatchPagingContract() throws Exception {
+        for (String name : List.of(
+                "net.caffeinemc.mods.sodium.client.render.chunk.vertex.format.impl.CompactChunkVertex",
+                "net.irisshaders.iris.vertices.sodium.terrain.XHFPTerrainVertex")) {
+            var node = read(name);
+            assertEquals(32768, node.fields.stream().filter(f -> f.name.equals("TEXTURE_MAX_VALUE")).findFirst().orElseThrow().value);
+        }
+        var supplier=read("net.irisshaders.iris.uniforms.CommonUniforms").methods.stream()
+                .filter(m -> m.name.equals("lambda$addDynamicUniforms$2")).findFirst().orElseThrow();
+        assertEquals("()Lorg/joml/Vector2i;",supplier.desc);
+        Set<String> calls=new HashSet<>();
+        for(var instruction:supplier.instructions) if(instruction instanceof MethodInsnNode m) calls.add(m.name);
+        assertTrue(calls.containsAll(Set.of("getWidth","getHeight","getInfo")),"Check the exact supplier body, not only its name");
     }
 }

@@ -1,65 +1,123 @@
 {
   "minecraft": "1.21.1",
-  "mappings": "official Mojang client/server 1.21.1 via Loom",
-  "gradle": "8.12",
-  "loom": "1.10.5",
-  "fabric_loader": "0.16.14",
+  "java": 21,
+  "mappings": "official Mojang 1.21.1 via Loom",
+  "gradle": "9.4.0",
+  "loom": "1.16.3",
+  "fabric_loader": "0.18.4",
   "fabric_api": "0.116.17+1.21.1",
-  "profile_selection": "provisional; active profile not supplied",
+  "profile_selection": "user-selected exact rendering target; active profile not read or changed",
   "sources": {
     "upstream": "d4db5c0fc619474018cf2eca4cfd4889a7ae973f",
-    "sodium": "8672650501117e72f5a809867092378fb5bc908a",
-    "iris": "25d756f9c773879fb50e59626e5dd7f5bba1348f"
+    "sodium": "53306ac4db8f9fae1655c81539ffcd79e4afc4fb",
+    "iris": "eb7afb99f747cc8ed5ee4072119539035d33cefd"
   },
+  "wrapper_sha256": "55243ef57851f12b070ad14f7f5bb8302daceeebc5bce5ece5fa6edb23e1145c",
+  "gradle_distribution_sha256": "60ea723356d81263e8002fec0fcf9e2b0eee0c0850c7a3d7ab0a63f2ccc601f3",
   "artifacts": [
     {
       "project": "sodium",
-      "modrinth_version": "u1OEbNKx",
-      "version": "mc1.21.1-0.6.13-fabric",
-      "minecraft_versions": [
-        "1.21",
-        "1.21.1"
-      ],
-      "url": "https://cdn.modrinth.com/data/AANobbMI/versions/u1OEbNKx/sodium-fabric-0.6.13%2Bmc1.21.1.jar",
-      "sha512": "13032e064c554fc8671573dadb07bc70e6ea2f68706c65c086c4feb1d2f664346a3414cbf9d1367b42b8d063a35e40f2f967ef9af31642e1f0093b852161fe91",
-      "sha256": "e04599514d88e41765f710eeba59e3814909833396bc11b977f48fc2e7e50353",
-      "fabric_version": "0.6.13+mc1.21.1"
+      "requirement": "hard",
+      "modrinth_version": "KIRFiWG4",
+      "version": "mc1.21.1-0.8.12-fabric",
+      "fabric_version": "0.8.12+mc1.21.1",
+      "filename": "sodium-fabric-0.8.12+mc1.21.1.jar",
+      "url": "https://cdn.modrinth.com/data/AANobbMI/versions/KIRFiWG4/sodium-fabric-0.8.12%2Bmc1.21.1.jar",
+      "sha256": "9ad11a616d1ca759867de8a5bbafcde5ab50b68dbd674110c7b90aeea251b793",
+      "sha512": "8afe411eec65a9f677611ed6390ce656e5a3572f9be473e5dca51ae882a9426a547cd2e8c793278577bb14c17e48158030b11753108926ef33698614bd94ed7f"
     },
     {
       "project": "iris",
-      "modrinth_version": "zsoi0dso",
-      "version": "1.8.8+1.21.1-fabric",
-      "minecraft_versions": [
-        "1.21",
-        "1.21.1"
-      ],
-      "url": "https://cdn.modrinth.com/data/YL57xq9U/versions/zsoi0dso/iris-fabric-1.8.8%2Bmc1.21.1.jar",
-      "sha512": "2e6ba2ffa1e1a6799288245a7e0ac68ee8df1d41b98362189df58f535cae34fa9277801e4136633467341b7dae5be0e5c698011b480b3d91b66d3dd4f7567aa6",
-      "sha256": "b5ad39a6cb113ca0a1765f06689f9f4b29ccd0c81247de90b06c42f5da1092f5",
-      "fabric_version": "1.8.8+mc1.21.1"
-    },
-    {
-      "project": "continuity",
-      "modrinth_version": "kSPJ4hQv",
-      "version": "3.0.0+1.21",
-      "minecraft_versions": [
-        "1.21",
-        "1.21.1"
-      ],
-      "url": "https://cdn.modrinth.com/data/1IjD5062/versions/kSPJ4hQv/continuity-3.0.0%2B1.21.jar",
-      "sha512": "3601ddb50f19142c087d32525bc0afcfb5f49a2e7477b6645a98ec191218739fdf3c6ac95cd298e826eb34fc533af43bb0e78c64e51292866ecabade4d14b13a",
-      "sha256": "99fd46b834874d167ea2349a9a72947cbfa7192f927aa99bbeb4b0637aa208d4",
-      "fabric_version": "3.0.0+1.21"
+      "requirement": "hard",
+      "modrinth_version": "bAo1Qhte",
+      "version": "1.8.14-beta.1+1.21.1-fabric",
+      "fabric_version": "1.8.14-beta.1+mc1.21.1",
+      "filename": "iris-fabric-1.8.14-beta.1+mc1.21.1.jar",
+      "url": "https://cdn.modrinth.com/data/YL57xq9U/versions/bAo1Qhte/iris-fabric-1.8.14-beta.1%2Bmc1.21.1.jar",
+      "sha256": "0ceb694040b4628bf3fa02286cfe5f0db833195669ab07f8caa4001359763eff",
+      "sha512": "a7fbb629793c52f0be8b049f787cb598879239b1ad8e1de62e103c8b9efff140e3232b93ef1f14e505d262897d8cf9505b1126396429ad4056bff969c8674e52"
     },
     {
       "project": "fabric-api",
+      "requirement": "hard",
       "modrinth_version": "Mys3P7lK",
       "version": "0.116.17+1.21.1",
-      "minecraft_versions": [
-        "1.21.1"
-      ],
+      "fabric_version": "0.116.17+1.21.1",
+      "filename": "fabric-api-0.116.17+1.21.1.jar",
       "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/Mys3P7lK/fabric-api-0.116.17%2B1.21.1.jar",
+      "sha256": "79ac44b40780acbd884b34c50be1e39af682847e5f5cb3b1fddeeaa768dce800",
       "sha512": "98c478217da19181f0e4df3ea6c2da6bdbda271c7544a4aea048513a49b444f1ff5b71dc0df6303017c48e8ff69b7bb6af6179bdf0d0e09ab3c1ee08411857a8"
+    },
+    {
+      "project": "continuity",
+      "requirement": "optional compatibility target",
+      "modrinth_version": "kSPJ4hQv",
+      "version": "3.0.0+1.21",
+      "fabric_version": "3.0.0+1.21",
+      "filename": "continuity-3.0.0+1.21.jar",
+      "url": "https://cdn.modrinth.com/data/1IjD5062/versions/kSPJ4hQv/continuity-3.0.0%2B1.21.jar",
+      "sha256": "99fd46b834874d167ea2349a9a72947cbfa7192f927aa99bbeb4b0637aa208d4",
+      "sha512": "3601ddb50f19142c087d32525bc0afcfb5f49a2e7477b6645a98ec191218739fdf3c6ac95cd298e826eb34fc533af43bb0e78c64e51292866ecabade4d14b13a"
+    },
+    {
+      "project": "sodium-extra",
+      "requirement": "optional compatibility target",
+      "modrinth_version": "ECiITTpZ",
+      "version": "mc1.21.1-0.8.7+fabric",
+      "fabric_version": "0.8.7+mc1.21.1",
+      "filename": "sodium-extra-fabric-0.8.7+mc1.21.1.jar",
+      "url": "https://cdn.modrinth.com/data/PtjYWJkn/versions/ECiITTpZ/sodium-extra-fabric-0.8.7%2Bmc1.21.1.jar",
+      "sha256": "0ee70af47e004dbea2cae57b96bd5f1fb7fc6705f0a3f40154b015e3403efcf8",
+      "sha512": "164c2eb4a7835bdadb4de68161c2c3ec84e1cfce67c21917b0a93e1abd1cfc6da73504b67b5f4b725ff62388f8bcb62aece8d8de2780b5abe0c392904f700a35"
+    },
+    {
+      "project": "cull-leaves",
+      "requirement": "optional compatibility target",
+      "modrinth_version": "b3VxU7eO",
+      "version": "4.1.1+1.21.1-fabric",
+      "fabric_version": "4.1.1",
+      "filename": "cullleaves-fabric-4.1.1+1.21.1.jar",
+      "url": "https://cdn.modrinth.com/data/GNxdLCoP/versions/b3VxU7eO/cullleaves-fabric-4.1.1%2B1.21.1.jar",
+      "sha256": "6d4f50a3f089c092f125da448a30e881fb3aa4e50144a3b33c84e8b88c293284",
+      "sha512": "43389205cfdc35da3fb07ab22284a0a158e8b80dda888be5b3b742280670a55ee0df79cc45f23081d8b378a287c08109b51d220ef01dd6e4f239e7939e542ce8"
+    },
+    {
+      "project": "reeses-sodium-options",
+      "requirement": "optional compatibility target",
+      "modrinth_version": "24WhugSw",
+      "version": "mc1.21.1-2.0.5+fabric",
+      "fabric_version": "2.0.5+mc1.21.1",
+      "filename": "reeses-sodium-options-fabric-2.0.5+mc1.21.1.jar",
+      "url": "https://cdn.modrinth.com/data/Bh37bMuy/versions/24WhugSw/reeses-sodium-options-fabric-2.0.5%2Bmc1.21.1.jar",
+      "sha256": "a7e02fefaaa0b7093ace02ac89564b7356241364fd3a89591f1263d3a52c59c2",
+      "sha512": "44b7b6c7d0b052211c280093fca7cad7fd4ae5865c75103eb791e81b9282645b35bf35edcff17d84207039a71bcba7fb563d137c50526ffd1a13bc2dc69551fc"
+    },
+    {
+      "project": "distanthorizons",
+      "requirement": "optional compatibility target",
+      "modrinth_version": "IcOcoekl",
+      "version": "3.3.1-1.21.1",
+      "fabric_version": "3.3.1",
+      "filename": "DistantHorizons-3.3.1-1.21.1-fabric-neoforge.jar",
+      "url": "https://cdn.modrinth.com/data/uCdwusMi/versions/IcOcoekl/DistantHorizons-3.3.1-1.21.1-fabric-neoforge.jar",
+      "sha256": "b12931cc0c680914e461b478f6a361285870a489bedd3985dee52cd3ce3590c0",
+      "sha512": "d64daa41c419410421695afbbc72da47372168ed8346f5154fb9232b401f86e4c3bf8b4e8a29deb36a70af98fb804ce2b9041334f0931cea3f6b7156c7668c1d"
+    },
+    {
+      "project": "dynamictrees",
+      "requirement": "optional compatibility target",
+      "modrinth_version": "AejMebCy",
+      "version": "1.7.2-BETA",
+      "fabric_version": "1.7.2",
+      "filename": "dynamictrees-fabric-1.21.1-1.7.2-BETA.jar",
+      "url": "https://cdn.modrinth.com/data/vdjF5PL5/versions/AejMebCy/dynamictrees-fabric-1.21.1-1.7.2-BETA.jar",
+      "sha256": "df5e2d5d45f21ee35f5dd8aad440399f6ada53a8441575f4a9ef05ef06cfe87b",
+      "sha512": "40d7ab674a98242dd37f8070d3d0f2befa4ef37d8b0e96d88abc100cf1668884b6618b2f3663998a36426899f0db908d2d2cc4d3a9643dd6b8836d60407c2ec4"
     }
-  ]
+  ],
+  "unavailable_or_unlocked": {
+    "physicsmod": "Pro v188b local JAR not supplied; no restricted download attempted",
+    "emf_etf_immediatelyfast_modernfix": "Exact versions not locked; not mandatory dependencies",
+    "forgeconfigapiport": "Required by optional Dynamic Trees; version not selected"
+  }
 }

@@ -1,0 +1,43 @@
+[
+  {
+    "name": "bliss",
+    "reference": "82df914cc43743e1c99df5fc74f354d7de19ced6",
+    "url": "https://raw.githubusercontent.com/X0nk/Bliss-Shader/82df914cc43743e1c99df5fc74f354d7de19ced6/shaders/dimensions/all_solid.fsh",
+    "sha256": "91289651fa83558c1e8e4ab54b3680ccefed5891749ba228641796548acaca6a",
+    "files": [
+      {
+        "source": "shaders/dimensions/all_solid.fsh",
+        "fixture": "bliss.glsl"
+      }
+    ]
+  },
+  {
+    "name": "photon",
+    "reference": "15458c0937f8647c37eb6a501bef5eb3bf3da31b",
+    "url": "https://raw.githubusercontent.com/sixthsurge/photon/15458c0937f8647c37eb6a501bef5eb3bf3da31b/shaders/include/surface/parallax.glsl",
+    "sha256": "b2e3f4ae4eec59485f964e59ec178e480b9650f50c2e1c1f30d99d83427871af",
+    "files": [
+      {
+        "source": "shaders/include/surface/parallax.glsl",
+        "fixture": "photon.glsl"
+      }
+    ]
+  },
+  {
+    "name": "bsl",
+    "reference": "Modrinth yFTiE1Nc / 10.1.5",
+    "official_distribution": "https://capttatsu.com/bslshaders/download.html",
+    "url": "https://cdn.modrinth.com/data/Q1vvjJYV/versions/yFTiE1Nc/BSL_v10.1.5.zip",
+    "sha256": "1038c018934c43018f9517e326c0cafcf8a3fb83db0d2cce0697fa8ee1289838",
+    "files": [
+      {
+        "source": "shaders/lib/surface/parallax.glsl",
+        "fixture": "bsl-parallax.glsl"
+      },
+      {
+        "source": "shaders/lib/surface/materialGbuffers.glsl",
+        "fixture": "bsl-material.glsl"
+      }
+    ]
+  }
+]

@@ -11,8 +11,10 @@ Unofficial Minecraft Java 1.21.1 Fabric backport of [Pages of Atlas](https://git
 ## API reference provenance
 
 - Exact 1.21.1 client/server artifacts and official mappings resolved by Loom from Mojang metadata. Decompiled sources stayed in ignored local caches and are not distributed.
-- Sodium source tag `mc1.21.1-0.6.13`, commit `8672650501117e72f5a809867092378fb5bc908a`.
-- Iris source commit `25d756f9c773879fb50e59626e5dd7f5bba1348f` declares release 1.8.8 for 1.21.1. Actual downloaded 1.8.8 artifact bytecode is the authority for target signatures. The newer 1.21.1 branch was inspected briefly, then frozen to this release source; it was not used as the compiled dependency.
+- Sodium source tag `mc1.21.1-0.8.12`, commit `53306ac4db8f9fae1655c81539ffcd79e4afc4fb`.
+- Iris source commit `eb7afb99f747cc8ed5ee4072119539035d33cefd` is the 2026-06-13 Sodium update used as the 1.8.14-beta.1 source reference. Actual downloaded 1.8.14-beta.1 artifact bytecode is the authority for target signatures. The newer 1.21.1 branch was inspected briefly, then frozen to this release source; it was not used as the compiled dependency.
 - Published Continuity 3.0.0+1.21 sources and artifact metadata were resolved for 1.21.1. Its sprite lookup receives the logical atlas and unique UVs; full CTM rendering still needs user testing.
 - No source from Sodium or Iris is redistributed here. Integrations use their pinned APIs. The shader-routing implementation is new backport code; this is a logical-grid adaptation of upstream physical paging, not a claim that upstream's 26.2 renderer hooks work on 1.21.1.
-- Gradle wrapper JAR and scripts come from Gradle v8.12.0; upstream's 9.5.1 wrapper launchers could not be mixed with the 8.12 JAR and were replaced with matching official launchers.
+- Backport.2 wrapper JAR/scripts come from Gradle v9.4.0. The selected artifact metadata requires Loom 1.16.3, whose plugin metadata requires Gradle >=9.4.0. Wrapper and distribution SHA-256 values are in DEPENDENCIES.json. Backport.1 used Gradle 8.12/Loom 1.10.5 and remains in history.
+
+- Backport.1 checkpoint: 5f882c4b976056b7809f525e83448720e6aef537. Backport.2 is a continuation on the same branch, with no reset or force-push. Shader references and download hashes are recorded in SHADERS.json; no shader sources are redistributed.

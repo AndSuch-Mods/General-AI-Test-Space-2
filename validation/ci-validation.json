@@ -1,31 +1,6 @@
 {
-  "tested_commit": "c4b21af7d938d3c18496cb19423c86e0522f7556",
-  "workflow_run": "https://github.com/AndSuch-Mods/General-AI-Test-Space-2/actions/runs/35493903757",
-  "artifact": "https://github.com/AndSuch-Mods/General-AI-Test-Space-2/actions/runs/35493903757/artifacts/10599602992",
-  "production_jar_sha256": "0ad3aad74a9c1bf9dd529702d43cd1f748b9ff86d9135e60bfb44ea43cb34683",
-  "matches_windows_build": true,
-  "test_suites": [
-    {
-      "name": "com.pagesofatlas.GlslTest",
-      "tests": "1",
-      "skipped": "0",
-      "failures": "0",
-      "errors": "0"
-    },
-    {
-      "name": "com.pagesofatlas.MixinTargetTest",
-      "tests": "1",
-      "skipped": "0",
-      "failures": "0",
-      "errors": "0"
-    },
-    {
-      "name": "com.pagesofatlas.PagingTest",
-      "tests": "7",
-      "skipped": "0",
-      "failures": "0",
-      "errors": "0"
-    }
-  ],
+  "status": "pending",
+  "version": "0.3.15-backport.2+1.21.1",
+  "previous_report": "backport1/ci-validation.json",
   "runtime_rendering_tested": false
 }
