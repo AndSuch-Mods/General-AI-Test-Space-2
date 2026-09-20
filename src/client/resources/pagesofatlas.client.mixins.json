@@ -1,0 +1,30 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.pagesofatlas.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "SpriteLoaderMixin",
+    "TextureAtlasMixin",
+    "TextureUtilMixin",
+    "GlStateManagerMixin",
+    "RendererShaderSourceMixin",
+    "ShaderInstanceMixin",
+    "SodiumShaderMixin",
+    "IrisShaderMixin",
+    "IrisExtendedShaderMixin",
+    "IrisSamplersMixin",
+    "IrisPbrAtlasMixin",
+    "IrisFillMixin",
+    "IrisTransformMixin",
+    "IrisTextureSizeMixin",
+    "IrisFallbackSourceMixin",
+    "IrisFallbackShaderMixin",
+    "IrisTextureParametersMixin",
+    "IrisTextureChangeMixin",
+    "SodiumProgramMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

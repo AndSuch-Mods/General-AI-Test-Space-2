@@ -1,0 +1,51 @@
+{
+  "bliss": {
+    "lexical_sampler_name_candidates": {
+      "dot": 1,
+      "encode": 1,
+      "mix": 1,
+      "shadow2D": 1,
+      "texture": 30,
+      "texture2DGradARB": 4,
+      "texture2DLod": 6,
+      "texture2D_POMSwitch": 4
+    },
+    "unclassified_non_texture_calls": {
+      "mix": [
+        "shaders/dimensions/composite1.fsh"
+      ],
+      "encode": [
+        "shaders/dimensions/DH_solid.fsh"
+      ],
+      "dot": [
+        "shaders/dimensions/DH_translucent.fsh"
+      ],
+      "shadow2D": [
+        "shaders/lib/texFiltering.glsl"
+      ]
+    },
+    "full_shader_pack_compiled": false,
+    "gpu_tested": false
+  },
+  "photon": {
+    "lexical_sampler_name_candidates": {
+      "texture": 13,
+      "textureGrad": 2,
+      "textureLod": 2
+    },
+    "unclassified_non_texture_calls": {},
+    "full_shader_pack_compiled": false,
+    "gpu_tested": false
+  },
+  "bsl": {
+    "lexical_sampler_name_candidates": {
+      "texture2D": 22,
+      "texture2DGradARB": 17,
+      "texture2DLod": 1
+    },
+    "unclassified_non_texture_calls": {},
+    "full_shader_pack_compiled": false,
+    "gpu_tested": false
+  },
+  "scope": "Lexical candidates only; names may be local variables or shadow samplers. Material paths were manually inspected and separately compiled as documented in COMPATIBILITY.md."
+}
