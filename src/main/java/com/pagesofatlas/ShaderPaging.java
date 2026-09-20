@@ -31,12 +31,16 @@ public final class ShaderPaging {
                 calls.appendReplacement(replaced, Matcher.quoteReplacement(p + "_" + function + "("));
             }
             calls.appendTail(replaced);
-            if (functions.isEmpty()) continue;
-            source = replaced.toString();
-            String withoutDeclaration = declaration.matcher(source).replaceFirst("");
-            if (Pattern.compile("\\b" + sampler + "\\b").matcher(withoutDeclaration).find()) {
+            String rewritten = replaced.toString();
+            String withoutDeclaration = declaration.matcher(rewritten).replaceFirst("");
+            // The legacy alias 'texture' is also a built-in function name. Only
+            // sampler-value references matter here, not calls using another sampler.
+            String remainingUse = "\\b" + sampler + "\\b" + (sampler.equals("texture") ? "(?!\\s*\\()" : "");
+            if (Pattern.compile(remainingUse).matcher(withoutDeclaration).find()) {
                 throw new IllegalArgumentException("Pages of Atlas: sampler " + sampler + " is passed indirectly; shader needs an explicit paging adapter");
             }
+            if (functions.isEmpty()) continue;
+            source = rewritten;
             StringBuilder helper = new StringBuilder("uniform sampler2D " + sampler + ";\n");
             helper.append("uniform ivec2 ").append(p).append("_grid;\n");
             for (int page = 1; page < 4; page++) helper.append("uniform sampler2D ").append(p).append(page).append(";\n");

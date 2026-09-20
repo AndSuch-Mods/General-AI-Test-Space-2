@@ -70,6 +70,8 @@ class PagingTest {
     @Test void unsupportedSamplerOperationsFailExplicitly() {
         assertThrows(IllegalArgumentException.class, () -> ShaderPaging.patch("uniform sampler2D gtexture; void main(){vec4 x=textureGather(gtexture,vec2(0));}"));
         assertThrows(IllegalArgumentException.class, () -> ShaderPaging.patch("uniform sampler2D gtexture;void main(){vec4 x=texture(gtexture,vec2(0));foo(gtexture);}"));
+        assertThrows(IllegalArgumentException.class, () -> ShaderPaging.patch("uniform sampler2D normals; vec4 sampleMaterial(sampler2D s, vec2 uv){return texture(s,uv);} void main(){vec4 x=sampleMaterial(normals,vec2(0));}"));
+        assertThrows(IllegalArgumentException.class, () -> ShaderPaging.patch("uniform sampler2D normals; void main(){foo(normals);}"));
         assertEquals("void main(){}", ShaderPaging.patch("void main(){}"));
     }
 }
