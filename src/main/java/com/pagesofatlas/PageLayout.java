@@ -3,12 +3,12 @@ package com.pagesofatlas;
 /** Shared by diffuse and material uploads; logical UVs remain in [0,1]. */
 public record PageLayout(int width, int height, int pages) {
     public PageLayout {
-        if (pages < 2 || pages > 4 || width < 1 || height < 1
+        if (pages < 1 || pages > 4 || width < 1 || height < 1
                 || Integer.bitCount(width) != 1 || Integer.bitCount(height) != 1) {
-            throw new IllegalArgumentException("Expected 2..4 power-of-two physical pages");
+            throw new IllegalArgumentException("Expected 1..4 power-of-two physical pages");
         }
     }
-    public int columns() { return 2; }
+    public int columns() { return pages == 1 ? 1 : 2; }
     public int rows() { return (pages + 1) / 2; }
     public int logicalWidth() { return width * columns(); }
     public int logicalHeight() { return height * rows(); }

@@ -1,20 +1,29 @@
 package com.pagesofatlas.mixin;
-import com.pagesofatlas.AtlasStitcher;
+import com.pagesofatlas.*;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.texture.*;
-import net.minecraft.resources.ResourceLocation;
-import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import java.util.List;
-import java.util.concurrent.Executor;
 
 @Mixin(SpriteLoader.class)
 public abstract class SpriteLoaderMixin {
-    @Shadow @Final private ResourceLocation location;
-    @Shadow @Final private int maxSupportedTextureSize;
-    @Inject(method = "stitch", at = @At("HEAD"), cancellable = true)
-    private void pagesofatlas$stitch(List<SpriteContents> sprites, int mip, Executor executor, CallbackInfoReturnable<SpriteLoader.Preparations> cir) {
-        var result = AtlasStitcher.stitch(location, maxSupportedTextureSize, sprites, mip, executor);
-        if (result != null) cir.setReturnValue(result);
+    @Redirect(method = "stitch", at = @At(value = "NEW", target = "net/minecraft/client/renderer/texture/Stitcher"))
+    private Stitcher<SpriteContents> pagesofatlas$packer(int w, int h, int mip) { return new AtlasStitcher(w, h, mip); }
+
+    // Both max calls preserve old atlas dimensions in vanilla. Always use this reload's
+    // packed extent, including multi-page -> one-page transitions; no extra pages for small packs.
+    @Redirect(method = "stitch", at = @At(value = "INVOKE", target = "Ljava/lang/Math;max(II)I"), require = 2, allow = 2)
+    private int pagesofatlas$freshExtent(int packed, int previous) { return packed; }
+
+    @Inject(method = "stitch", at = @At("RETURN"))
+    private void pagesofatlas$stage(CallbackInfoReturnable<SpriteLoader.Preparations> cir,
+                                   @Local Stitcher<SpriteContents> stitcher) {
+        if (stitcher instanceof AtlasStitcher paged) {
+            var result = cir.getReturnValue();
+            if (paged.layout().pages() > 1) PagedTextures.stage(result, paged.layout());
+            PagesOfAtlasClient.LOGGER.info("Planned atlas: {} sprites, {} physical {}x{} pages, logical {}x{}",
+                    result.regions().size(), paged.layout().pages(), paged.layout().width(), paged.layout().height(), result.width(), result.height());
+        }
     }
 }

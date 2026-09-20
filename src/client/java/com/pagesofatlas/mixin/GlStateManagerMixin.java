@@ -21,6 +21,8 @@ public abstract class GlStateManagerMixin {
     private static void pagesofatlas$parameterInt(int target, int name, int value, CallbackInfo ci) { PagedTextures.parameter(target, name, value); }
     @Inject(method = "_texParameter(IIF)V", at = @At("RETURN"))
     private static void pagesofatlas$parameterFloat(int target, int name, float value, CallbackInfo ci) { PagedTextures.parameter(target, name, value); }
+    @Inject(method = {"glDeleteProgram", "glLinkProgram"}, at = @At("HEAD"))
+    private static void pagesofatlas$forgetProgram(int program, CallbackInfo ci) { ShaderBindings.forget(program); }
     @ModifyVariable(method = "glShaderSource", at = @At("HEAD"), argsOnly = true)
     private static List<String> pagesofatlas$shader(List<String> sources, int shader, List<String> original) {
         boolean fragment = org.lwjgl.opengl.GL20.glGetShaderi(shader, org.lwjgl.opengl.GL20.GL_SHADER_TYPE) == org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER;

@@ -59,7 +59,7 @@ def generate(destination, size):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, default=Path('build/test-packs/poa-synthetic-1.21.1-backport2.zip'))
+    parser.add_argument('--output', type=Path, default=Path('build/test-packs/poa-synthetic-1.21.1-backport3.zip'))
     parser.add_argument('--size', type=int, default=1024)
     args = parser.parse_args()
     generate(args.output, args.size)

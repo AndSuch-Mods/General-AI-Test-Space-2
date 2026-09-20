@@ -44,12 +44,12 @@ jobs:
           if-no-files-found: error
           retention-days: 30
           path: |
-            build/libs/*backport.2*.jar
-            build/libs/*backport.2*.sha256
+            build/libs/*backport.3*.jar
+            build/libs/*backport.3*.sha256
             build/reports/tests/test/**
             build/test-results/test/*.xml
             build/reports/package-validation.json
-            build/test-packs/*backport2.zip
+            build/test-packs/*backport3.zip
       - name: Upload diagnostics on failure
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

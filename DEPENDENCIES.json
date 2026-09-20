@@ -6,7 +6,7 @@
   "loom": "1.16.3",
   "fabric_loader": "0.18.4",
   "fabric_api": "0.116.17+1.21.1",
-  "profile_selection": "user-selected exact rendering target; active profile not read or changed",
+  "profile_selection": "User-selected target retained; recent MultiMC instance inspected read-only on 2026-09-20 and found to contain older rendering mods.",
   "sources": {
     "upstream": "d4db5c0fc619474018cf2eca4cfd4889a7ae973f",
     "sodium": "53306ac4db8f9fae1655c81539ffcd79e4afc4fb",
@@ -116,8 +116,24 @@
     }
   ],
   "unavailable_or_unlocked": {
-    "physicsmod": "Pro v188b local JAR not supplied; no restricted download attempted",
-    "emf_etf_immediatelyfast_modernfix": "Exact versions not locked; not mandatory dependencies",
-    "forgeconfigapiport": "Required by optional Dynamic Trees; version not selected"
-  }
+    "physicsmod": "Pro v188b installed local JAR inspected read-only; internal 3.0.33; paid bytes excluded. See validation/local-mod-inspection.json.",
+    "emf_etf_immediatelyfast_modernfix": "Updated versions not locked; observed local versions recorded in validation/local-mod-inspection.json; not mandatory dependencies.",
+    "forgeconfigapiport": "Required by optional Dynamic Trees; observed local candidate 21.1.6 manifest accepts exact target; runtime unverified."
+  },
+  "build_only_libraries": [
+    {
+      "coordinate": "io.github.douira:glsl-transformer:3.0.0-pre3",
+      "filename": "glsl-transformer-3.0.0-pre3.jar",
+      "sha256": "0d55650fb8e58dad25b714d447a1ed5a713a6b6120a06610ce216c9b26e852d7",
+      "source": "https://repo.maven.apache.org/maven2/io/github/douira/glsl-transformer/3.0.0-pre3/glsl-transformer-3.0.0-pre3.jar",
+      "runtime_provider": "Pinned Iris nested JAR; class entries byte-identical, Fabric metadata differs; not bundled again"
+    },
+    {
+      "coordinate": "org.antlr:antlr4-runtime:4.13.1",
+      "filename": "antlr4-runtime-4.13.1.jar",
+      "sha256": "54665d2838cc66458343468efc539e454fc95b46a8a04b13c6ac43fc9be63505",
+      "source": "https://repo.maven.apache.org/maven2/org/antlr/antlr4-runtime/4.13.1/antlr4-runtime-4.13.1.jar",
+      "runtime_provider": "Pinned Iris nested JAR; class entries byte-identical, Fabric metadata differs; not bundled again"
+    }
+  ]
 }

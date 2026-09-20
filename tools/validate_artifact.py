@@ -20,7 +20,7 @@ def validate(path):
         assert metadata['depends']['fabricloader'] == '>=0.18.4'
         assert metadata['depends']['fabric-api'] == '0.116.17+1.21.1'
         assert set(metadata['depends']) == {'minecraft', 'java', 'fabricloader', 'fabric-api', 'sodium', 'iris'}
-        assert metadata['version'] == '0.3.15-backport.2+1.21.1'
+        assert metadata['version'] == '0.3.15-backport.3+1.21.1'
         assert '${' not in metadata['version']
         assert b'Copyright (c) 2026 mattmcbeardface' in z.read('LICENSE')
         assert not any(n.startswith(('net/minecraft/', '.reference/', 'assets/minecraft/')) for n in names)
@@ -52,6 +52,6 @@ def validate(path):
         print(json.dumps(result, indent=2))
 
 if __name__ == '__main__':
-    jars = [p for p in Path('build/libs').glob('pages-of-atlas-0.3.15-backport.2+1.21.1.jar')]
+    jars = [p for p in Path('build/libs').glob('pages-of-atlas-0.3.15-backport.3+1.21.1.jar')]
     assert len(jars) == 1, f'Expected one production JAR, got {jars}'
     validate(jars[0])

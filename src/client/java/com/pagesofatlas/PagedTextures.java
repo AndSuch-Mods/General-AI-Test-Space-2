@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.texture.SpriteLoader;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import java.util.*;
+import java.util.function.IntConsumer;
 
 /** Render-thread-owned GL resources. Preparations cross the reload worker boundary. */
 public final class PagedTextures {
@@ -56,21 +57,34 @@ public final class PagedTextures {
         if (internal || f == null) return false;
         internal = true;
         try {
+            int previousError = GL11.glGetError();
+            if (previousError != GL11.GL_NO_ERROR) {
+                PagesOfAtlasClient.LOGGER.warn("GL error 0x{} existed before atlas {} allocation", Integer.toHexString(previousError), id);
+                while (GL11.glGetError() != GL11.GL_NO_ERROR) { /* clear pre-existing flags once at allocation */ }
+            }
             for (int physical : f.ids) {
                 TextureUtil.prepareImage(format, physical, mip, f.layout.width(), f.layout.height());
-                if (GlStateManager._getTexLevelParameter(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_WIDTH) != f.layout.width()
-                        || GlStateManager._getTexLevelParameter(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_HEIGHT) != f.layout.height()) {
-                    throw new IllegalStateException("Pages of Atlas: physical texture allocation failed (GL error " + GL11.glGetError() + "); available VRAM may be insufficient");
-                }
+                AllocationChecks.validate(f.root, physical, f.layout, mip, (level, axis) ->
+                        GlStateManager._getTexLevelParameter(GL11.GL_TEXTURE_2D, level, axis == 0 ? GL11.GL_TEXTURE_WIDTH : GL11.GL_TEXTURE_HEIGHT), GL11::glGetError);
             }
             GlStateManager._bindTexture(id);
         } catch (RuntimeException | Error failure) {
+            PagesOfAtlasClient.LOGGER.error("Atlas {} allocation failed; releasing extra pages", id, failure);
             release(f.root);
             throw failure;
         } finally { internal = false; }
         PagesOfAtlasClient.LOGGER.info("Allocated atlas {}: {} physical {}x{} pages, mip {}, logical {}x{}, fragment sampler limit {}",
                 id, f.ids.length, f.layout.width(), f.layout.height(), mip, f.layout.logicalWidth(), f.layout.logicalHeight(), GL11.glGetInteger(GL20.GL_MAX_TEXTURE_IMAGE_UNITS));
         return true;
+    }
+    /** Iris DSA and fallback paths both bypass GlStateManager's parameter methods. */
+    public static void irisParameter(int root, int target, IntConsumer apply) {
+        Family f = family(root);
+        if (internal || target != GL11.GL_TEXTURE_2D || f == null) return;
+        int saved = GlStateManager._getInteger(GL11.GL_TEXTURE_BINDING_2D);
+        internal = true;
+        try { for (int id : f.ids) if (id != root) apply.accept(id); }
+        finally { GlStateManager._bindTexture(saved); internal = false; }
     }
     public static boolean upload(int target, int level, int x, int y, int w, int h, int format, int type, long address) {
         if (target != GL11.GL_TEXTURE_2D) return false;

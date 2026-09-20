@@ -1,0 +1,264 @@
+{
+  "date": "2026-09-20",
+  "instance": "1.21.1 Realism Revamp",
+  "minecraft": "1.21.1",
+  "loader": "0.16.5",
+  "scope": "Read-only manifests and selected bytecode; no launch, install, modification or runtime compatibility claim. Paid JAR contents excluded.",
+  "observed_mods": [
+    {
+      "filename": "continuity-3.0.0-beta.5+1.21.jar",
+      "sha256": "9bb470dddfcc3d745e229c7fd9f9663a9411d22d37aa703e13abf986d06ee33b",
+      "id": "continuity",
+      "version": "3.0.0-beta.5+1.21",
+      "depends": {
+        "minecraft": ">=1.21",
+        "fabricloader": ">=0.15.0",
+        "fabric-api": ">=0.100.1"
+      },
+      "breaks": {}
+    },
+    {
+      "filename": "cullleaves-fabric-3.4.0.jar",
+      "sha256": "265bc881ac5e2bd4be9d21d755611d19a82a39c594666bfe5431d1dfee93d78c",
+      "id": "cullleaves",
+      "version": "3.4.0",
+      "depends": {
+        "midnightlib": "*",
+        "minecraft": ">=1.19.3"
+      },
+      "breaks": {
+        "sodium": "<0.4.9"
+      }
+    },
+    {
+      "filename": "DistantHorizons-3.3.1-1.21.1-fabric-neoforge.jar",
+      "sha256": "b12931cc0c680914e461b478f6a361285870a489bedd3985dee52cd3ce3590c0",
+      "id": "distanthorizons",
+      "version": "3.3.1",
+      "depends": {
+        "fabricloader": "*",
+        "fabric-api-base": "*",
+        "fabric-lifecycle-events-v1": "*",
+        "fabric-resource-loader-v0": "*",
+        "minecraft": [
+          "1.21",
+          "1.21.1"
+        ],
+        "java": ">=21"
+      },
+      "breaks": {
+        "iris": "<=1.7.4",
+        "vertigo": "*"
+      }
+    },
+    {
+      "filename": "dynamictrees-fabric-1.21.1-1.7.2-BETA.jar",
+      "sha256": "df5e2d5d45f21ee35f5dd8aad440399f6ada53a8441575f4a9ef05ef06cfe87b",
+      "id": "dynamictrees",
+      "version": "1.7.2",
+      "depends": {
+        "fabricloader": ">=0.18.4",
+        "fabric-api": "*",
+        "minecraft": "1.21.1",
+        "java": ">=21",
+        "forgeconfigapiport": "*"
+      },
+      "breaks": {}
+    },
+    {
+      "filename": "entity_model_features_fabric_1.21-2.2.6.jar",
+      "sha256": "8850dc0718eb251cabb456c38d25b2952f94e35f02eae6d84a6c1b8adb89fb4b",
+      "id": "entity_model_features",
+      "version": "2.2.6",
+      "depends": {
+        "fabricloader": ">=0.14",
+        "minecraft": ">1.20.6",
+        "entity_texture_features": ">=6.2.1"
+      },
+      "breaks": {
+        "optifabric": "*",
+        "cem": "*",
+        "entity_texture_features": "<6.2.1"
+      }
+    },
+    {
+      "filename": "entity_texture_features_fabric_1.21-6.2.5.jar",
+      "sha256": "8ec8918625fcba4c94c5d225dcaf68bf94d658241281ef3cf528f43a5aae4ce1",
+      "id": "entity_texture_features",
+      "version": "6.2.5",
+      "depends": {
+        "fabricloader": "*",
+        "minecraft": ">1.20.6"
+      },
+      "breaks": {
+        "optifabric": "*",
+        "entity_model_features": "<2.0"
+      }
+    },
+    {
+      "filename": "ImmediatelyFast-Fabric-1.2.21+1.21.1.jar",
+      "sha256": "b0c65e0c4fbd044c49f6bbf0bb5d3c3d43b3abdf7156b5ac35408c2b2f8b1338",
+      "id": "immediatelyfast",
+      "version": "1.2.21+1.21.1",
+      "depends": {
+        "fabricloader": ">=0.15.10",
+        "minecraft": ">=1.21 <=1.21.1",
+        "java": ">=21"
+      },
+      "breaks": {
+        "optifabric": "*",
+        "memoryleakfix": "<=1.1.1"
+      }
+    },
+    {
+      "filename": "iris-fabric-1.8.0-beta.4+mc1.21.1.jar",
+      "sha256": "bf5a549819efe629e0b83bdd6eee98c752807db1a0abeffa1f1bbce6e7ec3313",
+      "id": "iris",
+      "version": "1.8.0-beta.4+mc1.21.1",
+      "depends": {
+        "fabricloader": ">=0.12.3",
+        "minecraft": [
+          "1.21.x"
+        ],
+        "sodium": [
+          "0.6.x"
+        ]
+      },
+      "breaks": {
+        "embeddium": "*",
+        "iris-explorer": "*",
+        "originsenhanced": "<=1.3.2",
+        "colormatic": "<=3.0.0",
+        "bedrockwaters": "<=1.6.0",
+        "batchedentityrendering": "*",
+        "canvas": "*",
+        "optifabric": "*",
+        "worldeditcui": "<1.18.1",
+        "physicsmod": "<=3.0.13",
+        "distanthorizons": "<=2.1.99",
+        "immersive_portals": "<=1.4.2"
+      }
+    },
+    {
+      "filename": "modernfix-fabric-5.19.3+mc1.21.1.jar",
+      "sha256": "ffb9641ceb6c9d574a91daab0cf969bc80fe4e0c7728ce47fa368565f74f1dd7",
+      "id": "modernfix",
+      "version": "5.19.3+mc1.21.1",
+      "depends": {
+        "minecraft": ">=1.16.2",
+        "fabricloader": ">=0.15.0"
+      },
+      "breaks": {
+        "dashloader": "<5.0.0-beta.1"
+      }
+    },
+    {
+      "filename": "physics-mod-pro-v188b-fabric-mc-1.21.1.jar",
+      "sha256": "168c1df91adcfc1861f39bbf2c554f689759fc71fdbe48086ae74b7530ca04dd",
+      "id": "physicsmod",
+      "version": "3.0.33",
+      "depends": {
+        "fabricloader": ">=0.16.0",
+        "minecraft": "1.21.1",
+        "fabric-api": ">=0.75",
+        "java": ">=21"
+      },
+      "breaks": {}
+    },
+    {
+      "filename": "reeses-sodium-options-fabric-1.8.0-beta.4+mc1.21.1.jar",
+      "sha256": "a0d4e35078016fc5b418e6c328649dc409212630f023bcb405f58b47b3d3da18",
+      "id": "reeses-sodium-options",
+      "version": "1.8.0-beta.4+mc1.21.1",
+      "depends": {
+        "minecraft": ">=1.21",
+        "sodium": ">=0.6.0-beta.2"
+      },
+      "breaks": {
+        "iris": "<1.1.4",
+        "sodium-extra": "<0.5.3",
+        "sodium": "<0.5.8"
+      }
+    },
+    {
+      "filename": "sodium-extra-fabric-0.6.0-beta.3+mc1.21.1.jar",
+      "sha256": "2821da2916c9caeb6cec2080f130aa26f424c2ff1d88c174c8cca7fe58effe68",
+      "id": "sodium-extra",
+      "version": "0.6.0-beta.3+mc1.21.1",
+      "depends": {
+        "fabricloader": ">=0.15",
+        "sodium": ">=0.6.0-beta.2",
+        "minecraft": ">=1.21"
+      },
+      "breaks": {
+        "iris": "<1.7.0",
+        "reeses-sodium-options": "<1.4.2"
+      }
+    },
+    {
+      "filename": "sodium-fabric-0.6.0-beta.2+mc1.21.1.jar",
+      "sha256": "f25fc5db84689e8b3ab7099ff03162e753ab62f4c1a4c062a1703547da07b23c",
+      "id": "sodium",
+      "version": "0.6.0-beta.2+mc1.21.1",
+      "depends": {
+        "minecraft": [
+          "1.21",
+          "1.21.1"
+        ],
+        "fabricloader": ">=0.12.0",
+        "fabric-block-view-api-v2": "*",
+        "fabric-renderer-api-v1": "*",
+        "fabric-rendering-data-attachment-v1": "*",
+        "fabric-rendering-fluids-v1": ">=2.0.0",
+        "fabric-resource-loader-v0": "*"
+      },
+      "breaks": {
+        "embeddium": "*",
+        "optifabric": "*",
+        "canvas": "*",
+        "sodium-blendingregistry": "*",
+        "ocrenderfix_sodium": "*",
+        "betterfpsdist": "<=1.21-4.5",
+        "bobby": "<=5.2.3",
+        "chunksfadein": "<=1.0.1-1.21",
+        "cull-less-leaves": "<=1.3.0",
+        "cullleaves": "<=3.4.0-fabric",
+        "custom_hud": "<3.4.2",
+        "farsight": "<=1.21-4.3",
+        "iceberg": "<1.2.4",
+        "iris": "<=1.7.3",
+        "movingelevators": "<=1.4.7",
+        "notenoughcrashes": "<4.4.8",
+        "noxesium": "<2.1.4",
+        "reeses-sodium-options": "<=1.7.3",
+        "sodium-extra": "<=0.5.7",
+        "sspb": "<=3.3.1"
+      }
+    },
+    {
+      "filename": "fabric-api-0.105.0+1.21.1.jar",
+      "sha256": "6f0616289d5c474e160f1b6c9cd47f322b61e7cd739a97740ab0969891d0eb45",
+      "id": "fabric-api",
+      "version": "0.105.0+1.21.1",
+      "depends": {
+        "fabricloader": ">=0.15.11",
+        "java": ">=21",
+        "minecraft": ">=1.21- <1.21.2-"
+      },
+      "breaks": {}
+    },
+    {
+      "filename": "ForgeConfigAPIPort-v21.1.6-1.21.1-Fabric.jar",
+      "sha256": "2e3a8f0e3bda85a7d722720e7ce879cbd9d028d9395c6fc224d329b3c982d9b1",
+      "id": "forgeconfigapiport",
+      "version": "21.1.6",
+      "depends": {
+        "fabricloader": ">=0.16.1",
+        "fabric-api": ">=0.102.0",
+        "minecraft": "1.21.1",
+        "java": ">=17"
+      },
+      "breaks": {}
+    }
+  ]
+}

@@ -21,7 +21,10 @@ public final class ShaderPaging {
                 throw new IllegalArgumentException("Pages of Atlas: unsupported atlas sampler declaration: " + uniforms.group());
             }
         }
-        source = SamplerSpecializer.specialize(source, samplers);
+        // Avoid parsing unrelated shader programs. Local variables and struct fields may
+        // legally share a uniform's name; textual occurrence alone is not a sampler use.
+        if (!Pattern.compile("\\buniform\\s+sampler2D\\s+(" + String.join("|", samplers) + ")\\s*;").matcher(source).find()) return input;
+        source = SamplerSpecializer.specialize(GlslScopes.protectLocals(source, samplers), samplers);
         boolean changed = false;
         for (String sampler : samplers) {
             Pattern declaration = Pattern.compile("\\buniform\\s+sampler2D\\s+" + sampler + "\\s*;");
@@ -44,7 +47,7 @@ public final class ShaderPaging {
             // The legacy alias 'texture' is also a built-in function name. Only
             // sampler-value references matter here, not calls using another sampler.
             String remainingUse = "\\b" + sampler + "\\b" + (sampler.equals("texture") ? "(?!\\s*\\()" : "");
-            if (Pattern.compile(remainingUse).matcher(withoutDeclaration).find()) {
+            if (Pattern.compile(remainingUse).matcher(withoutDeclaration).find() && GlslScopes.hasReference(withoutDeclaration, sampler)) {
                 throw new IllegalArgumentException("Pages of Atlas: sampler " + sampler + " is passed indirectly; shader needs an explicit paging adapter");
             }
             if (functions.isEmpty()) continue;

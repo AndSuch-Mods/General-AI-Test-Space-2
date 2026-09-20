@@ -1,0 +1,51 @@
+{
+  "jar": "pages-of-atlas-0.3.15-backport.2+1.21.1.jar",
+  "sha256": "57c6802d072f2bd513c91922f0d48c2056ee80dfff14f9feb64737d2e8252c99",
+  "version": "0.3.15-backport.2+1.21.1",
+  "java_class_major": 65,
+  "classes": 36,
+  "required_mixins": 16,
+  "checks": "zip, metadata, MIT license, class version, resources, static mixin selectors, named-reference scan",
+  "runtime_rendering_tested": false,
+  "test_suites": [
+    {
+      "name": "com.pagesofatlas.DependencyContractTest",
+      "tests": "2",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.pagesofatlas.GlslTest",
+      "tests": "1",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.pagesofatlas.MixinTargetTest",
+      "tests": "2",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.pagesofatlas.PagingTest",
+      "tests": "9",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.pagesofatlas.ShaderPackSourceTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    }
+  ],
+  "mixin_target_methods": 24,
+  "synthetic_generator_test": "1 passed",
+  "shader_checks": "Actual pinned Bliss POMSwitch, Photon POM/self-shadow, and BSL LabPBR/POM/emission/SSS functions compiled in minimal harnesses; not full packs",
+  "glsl_compiler": "Khronos glslang 16.6.0"
+}

@@ -70,4 +70,18 @@ class ShaderPackSourceTest {
             GetMaterials(smoothness,metalness,f0,emission,subsurface,porosity,ao,normal,p,dcdx,dcdy);outputColor=vec4(normal*shadow,emission+subsurface);}
             """);
     }
+
+    @Test void bslActualGgxLightingWithMaterialUniformCompiles() throws Exception {
+        compile("""
+            #define SHADER_SUN_MOON_SHAPE 0
+            #define SHADER_SUN_MOON_SIZE 1.0
+            const float sunPathRotation=0.;
+            float timeAngle=0.,sunVisibility=1.,shadowFade=1.,rainStrength=0.;
+            mat4 gbufferModelView=mat4(1.);
+            vec3 sunVec=vec3(0,1,0),lightVec=vec3(0,1,0);
+            """ + source("bsl-ggx.glsl") + """
+            void main(){outputColor=texture(specular,vec2(.75))+texture(normals,vec2(.75))
+              +vec4(GetSpecularHighlight(vec3(0,1,0),vec3(1,0,1),.5,vec3(.04),vec3(1),vec3(1),1.),0.);}
+            """);
+    }
 }

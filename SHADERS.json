@@ -37,6 +37,10 @@
       {
         "source": "shaders/lib/surface/materialGbuffers.glsl",
         "fixture": "bsl-material.glsl"
+      },
+      {
+        "source": "shaders/lib/surface/ggx.glsl",
+        "fixture": "bsl-ggx.glsl"
       }
     ]
   }

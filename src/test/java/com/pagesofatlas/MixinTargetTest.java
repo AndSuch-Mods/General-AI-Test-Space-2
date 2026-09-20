@@ -53,13 +53,27 @@ class MixinTargetTest {
                     }
                     for (var hook : mixin.methods) for (var annotation : annotations(hook.visibleAnnotations, hook.invisibleAnnotations)) {
                         if (!(value(annotation,"method") instanceof List<?> selectors)) continue;
-                        assertNull(value(annotation,"require"), "Do not relax required injections");
+                        if (value(annotation,"require") instanceof Integer required) assertTrue(required >= 1, "Do not relax required injections");
                         for (Object selector : selectors) {
                             String s = selector.toString();
                             var matches = node.methods.stream().filter(m -> s.equals(m.name) || s.equals(m.name+m.desc)).toList();
                             assertEquals(1, matches.size(), target + " :: " + s);
                             var method = matches.getFirst();
                             assertEquals((method.access & Opcodes.ACC_STATIC) != 0, (hook.access & Opcodes.ACC_STATIC) != 0, target + " staticness");
+                            if (annotation.desc.endsWith("/Redirect;")) {
+                                AnnotationNode at = (AnnotationNode)value(annotation,"at");
+                                String point = (String)value(at,"value"), destination = (String)value(at,"target");
+                                long sites = 0;
+                                for (var instruction : method.instructions) {
+                                    if (point.equals("NEW") && instruction instanceof TypeInsnNode t && t.getOpcode() == Opcodes.NEW && t.desc.equals(destination)) sites++;
+                                    if (point.equals("INVOKE") && instruction instanceof MethodInsnNode m && ("L"+m.owner+";"+m.name+m.desc).equals(destination)) sites++;
+                                }
+                                int required = value(annotation,"require") instanceof Integer n ? n : 1;
+                                assertEquals(required, sites, "Exact redirect callsites: " + target + " " + destination);
+                            }
+                            if (entry.getAsString().equals("SpriteLoaderMixin") && annotation.desc.endsWith("/Inject;")) {
+                                assertNotEquals(Boolean.TRUE, value(annotation,"cancellable"), "Preserve Continuity's normal RETURN hook");
+                            }
                             checked++;
                         }
                     }
